@@ -715,6 +715,17 @@ export class Anatomy3D {
     };
   }
 
+  /** where things worn on the head go (body cm, rest pose): its centre, crown and lowest point, the eyes */
+  landmarks(model: VoiceModel): { center: THREE.Vector3; top: number; bottom: number; eyes: readonly V3[]; eyeR: number } {
+    const r = this.restFor(model);
+    return { center: r.center, top: r.head.y1, bottom: r.head.y0, eyes: r.eyes, eyeR: r.eyeR };
+  }
+
+  /** the head's own turn this frame (its nods and sways), body cm: what is worn on it turns with it */
+  get headTurn(): THREE.Matrix4 {
+    return this.beams.group.matrix;
+  }
+
   private restFor(model: VoiceModel): Rest {
     if (!this.rest || this.rest.model !== model) this.rest = buildRest(model);
     return this.rest;

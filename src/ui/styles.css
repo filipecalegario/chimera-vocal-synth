@@ -2707,3 +2707,12 @@ input[type="range"]::-moz-range-thumb {
     padding: 7px 8px 0;
   }
 }
+
+/* ---------- the choir page (?choir=<id>): one stage over the transport */
+.choir {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
+.choir-stage .screen-body {
+  min-height: 240px;
+}
